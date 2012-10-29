@@ -1,8 +1,10 @@
-<%= simple_form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @post, :html => { :class => 'form-vertical' } do |f| %>
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :body %>
-  </div>
+    <div class='row'>
+      <%= f.input :body, wrapper_html: { class: 'span5' }, input_html: { class: 'input-block-level' } %>
+      <div id='post_body_preview' class='well span6'></div>
+    </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
   </div>

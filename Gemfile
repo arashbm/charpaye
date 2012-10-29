@@ -38,9 +38,14 @@ gem 'thin'
 gem 'high_voltage'
 gem 'simple_form'
 gem 'responders'
+
 gem 'devise'
+gem 'devise-i18n'
+
 gem 'twitter-bootstrap-rails'
 gem 'marked-rails'
+
+gem 'rails-i18n'
 # Deploy with Capistrano
 # gem 'capistrano'
 

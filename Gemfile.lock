@@ -45,6 +45,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise-i18n (0.5.8)
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (1.4.0)
@@ -89,6 +90,8 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails-i18n (0.6.6)
+      i18n (~> 0.5)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -143,12 +146,14 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
+  devise-i18n
   high_voltage
   jquery-rails
   marked-rails
   newrelic_rpm
   pg
   rails (= 3.2.8)
+  rails-i18n
   responders
   sass-rails (~> 3.2.3)
   simple_form

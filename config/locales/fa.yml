@@ -1,0 +1,13 @@
+fa:
+  activerecord:
+    models:
+      user: نویسنده
+      post: مطلب
+    attributes:
+      user:
+        email: ایمیل
+        password: رمز عبور
+        remember_me: مرا به یاد بسپار
+      post:
+        title: تیتر اصلی
+        body: بدنه

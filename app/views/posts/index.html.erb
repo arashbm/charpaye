@@ -1,14 +1,18 @@
-<%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class='alert alert-info alert-block'>
+  <a href="#" class="close" data-dismiss="alert">×</a>
+  <p>سلام. این برنامه‌ی تحت وب رو برای راحت‌تر شدن فرآیند ارسال مطلب و انتشار اونا درست کردم. می‌تونید مطالب‌تون رو اینجا بفرستید تا همه بتونن اونا رو بخونن و درباره‌ی اون نظر بدن. همینطور می‌تونید مطالب بقیه رو بخونید و درباره‌ی اونا نظر بدید.</p>
+  <p>
+  <%= link_to 'ارسال مطلب جدید',
+    new_post_path,
+    :class => 'btn btn-primary' %></p>
 </div>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_post_path,
-            :class => 'btn btn-primary' %>
-<%= content_tag_for :article, @posts do |post| %>
+<div class="page-header">
+  <h1>همه‌ی مطالب</h1>
+</div>
+<%= content_tag_for :article, @posts, class: 'span6 offset3' do |post| %>
   <h2><%= link_to post.title, post %><small><%= post.user.email %></small></h2>
 
-  <div class='btn-toolbar pull-right'>
+  <div class='btn-toolbar pull-left'>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
       edit_post_path(post), :class => 'btn btn-mini' %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -18,6 +22,6 @@
       :class => 'btn btn-mini btn-danger' %>
   </div>
 
-  <%= post.body %>
+  <%= content_tag :div, simple_format(post.body), data: { markdown: post.body } %>
 <% end %>
 
