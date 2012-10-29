@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   # TODO: change to scope
   def editable_posts
-    posts
+    Post.scoped
   end
   def visible_posts
     Post.scoped
