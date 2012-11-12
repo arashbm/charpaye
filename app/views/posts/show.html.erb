@@ -12,10 +12,11 @@
     <%= link_to t('.edit', default: t("helpers.links.edit")), edit_post_path(@post) %> |
     <%= link_to t('.destroy', default: t("helpers.links.destroy")), post_path(@post),
     :method => 'delete', :data => { :confirm => t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } %> |
-    <%= link_to "#{Post.human_attribute_name(:audits)} (#{@post.audits.count})", post_revisions_path(@post) %>
+    <%= link_to "#{Post.human_attribute_name(:audits)} (#{@post.audits.count})", post_revisions_path(@post) %> |
+    <%= link_to "#{Post.human_attribute_name(:reviews)} (#{@post.reviews.count})", path_for(@post) %>
   </div>
 </div>
-<div class='row span6 offset3'>
+<div class='row span6 offset3' id='reviews' >
   <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
     <hr />
     <%= r.user.email %> در <%= l r.created_at %> (<%= time_ago_in_words r.created_at %>):
