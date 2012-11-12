@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  positive: MyText
+  negative: MyText
+  comments: MyText
+  user_id: 1
+  post_id: 1
+
+two:
+  positive: MyText
+  negative: MyText
+  comments: MyText
+  user_id: 1
+  post_id: 1

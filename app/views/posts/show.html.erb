@@ -15,3 +15,19 @@
     <%= link_to "#{Post.human_attribute_name(:audits)} (#{@post.audits.count})", post_revisions_path(@post) %>
   </div>
 </div>
+<div class='row span6 offset3'>
+  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
+    <hr />
+    <%= r.user.email %> در <%= l r.created_at %> (<%= time_ago_in_words r.created_at %>):
+    <%= content_tag :div, r.positive, data: { markdown: r.positive }, class: 'review review_positive' %>
+    <%= content_tag :div, r.negative, data: { markdown: r.negative }, class: 'review review_negative'%>
+    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comment' %>
+  <% end %>
+  <hr />
+  <%= simple_form_for [@post, @post.reviews.new] do |f| %>
+    <%= f.input :positive, input_html: { rows: 5, class: 'span6' } %>
+    <%= f.input :negative, input_html: { rows: 5, class: 'span6' } %>
+    <%= f.input :comments, input_html: { rows: 1, class: 'span6' } %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
