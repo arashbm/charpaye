@@ -1,2 +1,8 @@
-<h1>Auditions#show</h1>
-<p>Find me in app/views/auditions/show.html.erb</p>
+<div class='page-header'>
+  <h1>ویرایش شماره‌ی «<%= @audit.id %>» <small>مطلب «<%= @post.title %>»</small></h1>
+</div>
+<%# <%= content_tag :div, @audit.audited_changes do |ch| %1> %>
+  <%# <%= Post.human_attribute_name ch[0].to_sym %1>: %>
+  <%# <%= content_tag :div, class: 'wall' %1> %>
+<%# <% end %1> %>
+<%= debug @audit %>

@@ -1,18 +1,13 @@
 class AuditionsController < ApplicationController
-  before_filter authenticate_user!
+  before_filter :authenticate_user!
+  before_filter :get_post
 
   def index
-    @audits = @posts.audits.all
+    @audits = @post.audits.all
   end
 
   def show
-    if data = params[:id].match /\A(\d+)..(\d+)\z/
-      range = (data[0]..data[1])
-    else
-      id = params[:id].to_i
-      range = (id-1..id)
-    end
-    @audits = [@posts.audits.find(range.first),@posts.audits.find(range.last)]
+    @audit = @post.audits.find(params[:id])
   end
 
   private
