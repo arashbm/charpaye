@@ -1,5 +1,11 @@
 Charpaye::Application.routes.draw do
-  resources :posts
+  get "auditions/index"
+
+  get "auditions/show"
+
+  resources :posts do
+    resources :auditions, only: [ :index, :show ]
+  end
   root to: "posts#index"
 
   devise_for :users

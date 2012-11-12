@@ -49,5 +49,7 @@ gem 'rails-i18n'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+gem "audited-activerecord", "~> 3.0"
+
 # To use debugger
 # gem 'debugger'
