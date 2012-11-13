@@ -13,22 +13,25 @@
     <%= link_to t('.destroy', default: t("helpers.links.destroy")), post_path(@post),
     :method => 'delete', :data => { :confirm => t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } %> |
     <%= link_to "#{Post.human_attribute_name(:audits)} (#{@post.audits.count})", post_revisions_path(@post) %> |
-    <%= link_to "#{Post.human_attribute_name(:reviews)} (#{@post.reviews.count})", path_for(@post) %>
+    <%= link_to "#{Post.human_attribute_name(:reviews)} (#{@post.reviews.count})", post_path(@post, anchor: 'reviews') %>
   </div>
 </div>
 <div class='row span6 offset3' id='reviews' >
-  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
-    <hr />
-    <%= r.user.email %> در <%= l r.created_at %> (<%= time_ago_in_words r.created_at %>):
-    <%= content_tag :div, r.positive, data: { markdown: r.positive }, class: 'review review_positive' %>
-    <%= content_tag :div, r.negative, data: { markdown: r.negative }, class: 'review review_negative'%>
-    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comment' %>
-  <% end %>
-  <hr />
-  <%= simple_form_for [@post, @post.reviews.new] do |f| %>
+  <div class='page-header'>
+    <h2><%= Post.human_attribute_name(:reviews) %></h2>
+  </div>
+  <%= simple_form_for [@post, @post.reviews.new], remote: true, format: :json do |f| %>
     <%= f.input :positive, input_html: { rows: 5, class: 'span6' } %>
     <%= f.input :negative, input_html: { rows: 5, class: 'span6' } %>
     <%= f.input :comments, input_html: { rows: 1, class: 'span6' } %>
     <%= f.button :submit %>
+  <% end %>
+  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
+    <%= r.user.email %> در <%= l r.created_at %> (<%= time_ago_in_words r.created_at %>):
+    <%= content_tag :div, r.positive, data: { markdown: r.positive }, class: 'review review_positive' %>
+    <%= content_tag :div, r.negative, data: { markdown: r.negative }, class: 'review review_negative'%>
+    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comment' %>
+    <%= link_to t('helpers.links.destroy'), post_review_path(@post,r, format: :json), method: :delete, remote: true, confirm: 'Are you sure?' %>
+    <hr />
   <% end %>
 </div>
