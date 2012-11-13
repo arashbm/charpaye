@@ -50,6 +50,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     devise-i18n (0.5.8)
+    diffy (2.1.0)
     erubis (2.7.0)
     eventmachine (1.0.0)
     execjs (1.4.0)
@@ -152,6 +153,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   devise-i18n
+  diffy
   high_voltage
   jquery-rails
   marked-rails

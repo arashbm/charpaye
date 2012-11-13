@@ -11,3 +11,8 @@ fa:
       post:
         title: تیتر اصلی
         body: بدنه
+        audits: ویرایش‌ها
+  helpers:
+    links:
+      destroy: حذف
+      edit: ویرایش 

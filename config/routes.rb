@@ -1,10 +1,6 @@
 Charpaye::Application.routes.draw do
-  get "auditions/index"
-
-  get "auditions/show"
-
   resources :posts do
-    resources :auditions, only: [ :index, :show ]
+    resources :revisions, only: [ :index, :show ]
   end
   root to: "posts#index"
 
