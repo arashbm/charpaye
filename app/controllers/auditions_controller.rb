@@ -7,7 +7,7 @@ class AuditionsController < ApplicationController
   end
 
   def show
-    @audit = @post.audits.find(params[:id])
+    @audit = @post.audits.find_by_version(params[:id])
   end
 
   private

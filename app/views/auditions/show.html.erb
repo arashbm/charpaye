@@ -1,8 +1,13 @@
 <div class='page-header'>
-  <h1>ویرایش شماره‌ی «<%= @audit.id %>» <small>مطلب «<%= @post.title %>»</small></h1>
+  <h1>ویرایش نسخه‌ی «<%= @audit.version %>» <small>مطلب «<%= link_to @post.title, @post %>»</small></h1>
 </div>
-<%# <%= content_tag :div, @audit.audited_changes do |ch| %1> %>
-  <%# <%= Post.human_attribute_name ch[0].to_sym %1>: %>
-  <%# <%= content_tag :div, class: 'wall' %1> %>
-<%# <% end %1> %>
-<%= debug @audit %>
+<% case @audit.action %>
+<% when 'update' %>
+  <div class='alert alert-box alert-info'><p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.email %> ویرایش شد.</p><%= next_previous_buttons %></div>
+<h2><%= content_tag :strike, @audit.audited_changes["title"][0] if @audit.audited_changes.keys.include? "title" && @audit.action %> <%= @audit.revision.title %></h2>
+<%= content_tag :div, body_diff(@audit.audited_changes["body"][0], @audit.audited_changes["body"][1]), class: 'well' if @audit.audited_changes.keys.include? "body" %>
+<% when 'create' %>
+  <div class='alert alert-box alert-info'><p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.email %> ایجاد شد.</p><%= next_previous_buttons %></div>
+  <h2><%= @audit.revision.title %></h2>
+  <%= content_tag :div, @audit.revision.body, class: 'well', data: {markdown: @audit.revision.body} %>
+<% end %>
