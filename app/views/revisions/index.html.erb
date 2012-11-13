@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <%= content_tag_for :tr, @audits do |a| %>
-      <td><%= link_to a.version, post_audition_path(@post,a.version) %></td>
+      <td><%= link_to a.version, post_revision_path(@post,a.version) %></td>
       <td><%= a.user.email %></td>
       <td><%= l a.created_at %> (<%= time_ago_in_words a.created_at %>)</td>
     <% end %>

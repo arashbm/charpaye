@@ -1,4 +1,4 @@
-class AuditionsController < ApplicationController
+class RevisionsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_post
 
