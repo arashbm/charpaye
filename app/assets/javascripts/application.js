@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.rtl
+//= require bootstrap
 //= require jquery.autogrow-textarea
 //= require marked
 //= require_tree .
