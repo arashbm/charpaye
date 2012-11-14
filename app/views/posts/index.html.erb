@@ -10,7 +10,7 @@
   <h1>همه‌ی مطالب</h1>
 </div>
 <%= content_tag_for :article, @posts, class: 'span6 offset3' do |post| %>
-  <h2><%= link_to post.title, post %><small><%= post.user.email %></small></h2>
+  <h2><%= link_to post.title, post %><small><%= post.user.name %></small></h2>
 
   <div class='btn-toolbar pull-left'>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
