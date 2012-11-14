@@ -41,6 +41,8 @@ gem 'responders'
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'twitter-bootstrap-rails'
 gem 'marked-rails'

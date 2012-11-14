@@ -1,0 +1,34 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">چارپایه</a>
+      <div class="container nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "همه‌ی مطالب", posts_path  %></li>
+          <li><%= link_to "ارسال مطلب جدید", new_post_path  %></li>
+          <li><%= link_to "Link3", "/path3"  %></li>
+        </ul>
+        <ul class='nav pull-right'>
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">سلام <%= current_user.first_name %> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/user/preferences"><i class="icon-cog"></i> تنظیمات</a></li>
+              <li><a href="/help/support"><i class="icon-envelope"></i> پشتیبانی</a></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do  %>
+                  <i class="icon-off"></i> خروج
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
