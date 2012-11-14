@@ -16,23 +16,22 @@
     <%= link_to "#{Post.human_attribute_name(:reviews)} (#{@post.reviews.count})", post_path(@post, anchor: 'reviews') %>
   </div>
 </div>
-<div class='row span6 offset3' id='reviews' >
+<div class='row span6 offset3' id='reviews' ng-app="reviews" ng-controller='ListCtrl' >
   <div class='page-header'>
     <h2><%= Post.human_attribute_name(:reviews) %></h2>
   </div>
-  <%= simple_form_for [@post, @post.reviews.new], remote: true, format: :json do |f| %>
-    <%= f.input :positive, input_html: { rows: 5, class: 'span6' } %>
-    <%= f.input :negative, input_html: { rows: 5, class: 'span6' } %>
-    <%= f.input :comments, input_html: { rows: 1, class: 'span6' } %>
-    <%= f.button :submit %>
-  <% end %>
-  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
-    <hr />
-    <%= r.user.email %> در <%= l r.created_at %> (<%= time_ago_in_words r.created_at %>):
-    <%= content_tag :div, r.positive, data: { markdown: r.positive }, class: 'review review_positive' %>
-    <%= content_tag :div, r.negative, data: { markdown: r.negative }, class: 'review review_negative'%>
-    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comment' %>
-    <%= link_to t('helpers.links.destroy'), post_review_path(@post,r, format: :json), method: :delete, remote: true, confirm: 'Are you sure?' %>
-    <hr />
-  <% end %>
+  <form accept-charset="UTF-8" class="simple_form new_review" id="new_review" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"></div>
+    <div class="control-group text optional"><label class="text optional control-label" for="review_positive">نقاط قوت</label><div class="controls"><textarea class="text optional span6" cols="40" id="review_positive" ng-model='review.positive' rows="5"></textarea></div></div>
+    <div class="control-group text optional"><label class="text optional control-label" for="review_negative">نقاط ضعف</label><div class="controls"><textarea class="text optional span6" cols="40" id="review_negative" ng-model='review.negative' rows="5"></textarea></div></div>
+    <div class="control-group text optional"><label class="text optional control-label" for="review_comments">Comments</label><div class="controls"><textarea class="text optional span6" cols="40" id="review_comments" ng-model="review.comments" rows="1"></textarea></div></div>
+    <input class="btn" name="commit" value="نظر ایجاد" ng-click='save()'>
+  </form>
+  <article  ng-repeat='review in reviews'>
+    <img src={{review.user.image}} /> {{review.user.first_name}} {{review.user.last_name}}:
+    <div class="review review_positive" data-markdown="{{review.positive}}"></div>
+    <div class="review review_negative" data-markdown="{{review.negative}}"></div>
+    <div class="review review_comment" data-markdown="{{review.comments}}"></div>
+    در تاریخ {{review.created_at}} | | <a href="/posts/4/reviews/{{review.id}}.json" data-confirm="Are you sure?" data-method="delete" data-remote="true" rel="nofollow"><i class='icon-pencil'></i>  ویرایش</a>
+    <hr>
+  </article>
 </div>

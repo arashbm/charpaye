@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = @post.reviews.all
-    respond_with @post, @reviews
+    respond_with @post, @reviews, include: :user
   end
 
   # GET /reviews/1
@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = @post.reviews.where(user_id: current_user.id).create(params[:review])
-    respond_with @post, @review
+    respond_with @post, @review, include: :user
   end
 
   # PUT /reviews/1
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   def update
     @review = @post.reviews.where(user_id: current_user.id).find(params[:id])
     @review.update_attributes(params[:review])
-    respond_with @post, @review
+    respond_with @post, @review, include: :user
   end
 
   # DELETE /reviews/1
