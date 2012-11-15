@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = @post.reviews.where(user_id: current_user.id).create(params[:review])
-    respond_with @post, @review
+    respond_with @post, @review, location: post_path(@post, anchor: "review_#{@review.id}")
   end
 
   # PUT /reviews/1
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   def update
     @review = @post.reviews.where(user_id: current_user.id).find(params[:id])
     @review.update_attributes(params[:review])
-    respond_with @post, @review
+    respond_with @post, @review, location: post_path(@post, anchor: "review_#{@review.id}")
   end
 
   # DELETE /reviews/1
@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = @post.reviews.where(user_id: current_user.id).find(params[:id])
     @review.destroy
-    respond_with @post, @review
+    respond_with @post, @review, location: post_path(@post, anchor: "reviews")
   end
 
   private
