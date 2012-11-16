@@ -1,10 +1,14 @@
 <%= simple_form_for @post, :html => { :class => 'form-vertical' } do |f| %>
   <div class="form-inputs">
     <%= f.input :title %>
-    <div class='row'>
-      <%= f.input :body, wrapper_html: { class: 'span5' }, input_html: { class: 'input-block-level' } %>
-      <div id='post_body_preview' class='well span6'></div>
-    </div>
+    <%= f.input :body do %>
+      <div class="wmd-panel">
+        <div id='wmd-button-bar'></div>
+        <%= f.text_area :body, class: 'wmd-input', id: 'wmd-input' %>
+      </div>
+    <% end %>
+    <div id="wmd-preview" class="wmd-panel wmd-preview well"></div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
   </div>
