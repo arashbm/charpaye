@@ -1,12 +1,9 @@
 Charpaye::Application.routes.draw do
-  get "auditions/index"
-
-  get "auditions/show"
-
   resources :posts do
-    resources :auditions, only: [ :index, :show ]
+    resources :revisions, only: [ :index, :show ]
+    resources :reviews, except: [ :new, :edit ]
   end
   root to: "posts#index"
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 end

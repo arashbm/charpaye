@@ -3,6 +3,7 @@ fa:
     models:
       user: نویسنده
       post: مطلب
+      review: نظر
     attributes:
       user:
         email: ایمیل
@@ -11,3 +12,14 @@ fa:
       post:
         title: تیتر اصلی
         body: بدنه
+        audits: ویرایش‌ها
+        reviews: نظرات
+      review:
+        form: قالب
+        content: محتوا
+        comments: باقی حرف‌ها
+  helpers:
+    links:
+      destroy: حذف
+      edit: ویرایش 
+      confirm: آیا مطمئن هستید می‌خواهید این را حذف کنید؟ این عمل غیر قابل بازگشت است.

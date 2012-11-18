@@ -1,22 +1,37 @@
 <div class='row span6 offset3'>
   <div class="page-header">
     <h1>
-      <%= @post.title %>
-      <small><%= @post.user.email %></small>
+      <%= @post.title %><small> <%= @post.user.name %></small>
     </h1>
   </div>
 
   <%= content_tag :div, @post.body, data:{markdown: @post.body} %>
 
-  <div class="form-actions">
-    <%= link_to t('.back', :default => t("helpers.links.back")),
-      posts_path, :class => 'btn'  %>
-    <%= link_to t('.edit', :default => t("helpers.links.edit")),
-      edit_post_path(@post), :class => 'btn' %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-      post_path(@post),
-      :method => 'delete',
-      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-      :class => 'btn btn-danger' %>
+  <%= post_footer @post %>
+</div>
+<div class='row span6 offset3' id='reviews' >
+  <div class='page-header'>
+    <h2><%= Post.human_attribute_name(:reviews) %></h2>
   </div>
+  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
+    <div class='review-author'><%= image_tag r.user.image %> <%= r.user.name %>:</div>
+    <%= content_tag :div, r.content, data: { markdown: r.content }, class: 'review review_content' %>
+    <%= content_tag :div, r.form, data: { markdown: r.form }, class: 'review review_form'%>
+    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comments' %>
+  
+    <div class='review-footer'><%= l r.created_at, format: :short %> - <%= time_ago_in_words r.created_at %> پیش 
+      <% if current_user.id == r.user.id %>
+        | <%= link_to post_review_path(@post,r), method: :delete, confirm: t('helpers.links.confirm') do %>
+            <i class='icon-trash'></i> <%= t('helpers.links.destroy') %>
+          <% end %>
+      <% end %>
+    </div>
+    <hr />
+  <% end %>
+  <%= simple_form_for [@post, @post.reviews.new] do |f| %>
+    <%= f.input :content, input_html: { rows: 5, class: 'span6' } %>
+    <%= f.input :form, input_html: { rows: 5, class: 'span6' } %>
+    <%= f.input :comments, as: :string, input_html: {class: 'span6' } %>
+    <%= f.button :submit %>
+  <% end %>
 </div>
