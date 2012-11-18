@@ -10,9 +10,9 @@
   <h1>همه‌ی مطالب</h1>
 </div>
 <%= content_tag_for :article, @posts, class: 'span6 offset3' do |post| %>
-  <h2><%= link_to post.title, post %> <small><%= post.user.name %></small></h2>
+  <h2><%= link_to post.title, post %> <small><%= image_tag post.user.image %> <%= post.user.name %></small></h2>
 
-  <%= content_tag :div, simple_format(post.body), data: { markdown: post.body } %>
+  <%= content_tag :div, post.body.split("\n").first, data: { markdown: post.body.split("\n").first } %>
   <%= post_footer post %>
 <% end %>
 
