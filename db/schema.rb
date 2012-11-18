@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113232647) do
+ActiveRecord::Schema.define(:version => 20121118193921) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20121113232647) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.text     "positive"
-    t.text     "negative"
+    t.text     "form"
+    t.text     "content"
     t.text     "comments"
     t.integer  "user_id"
     t.integer  "post_id"

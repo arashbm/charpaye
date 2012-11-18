@@ -1,26 +1,16 @@
-en:
+fa:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": 'بله'
+    "no": 'خیر'
     required:
-      text: 'required'
+      text: 'الزامی'
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
-    # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-
+      default_message: "نگاهی به اشکالات زیر بیندازید:"
+    hints:
+      defaults:
+        form: 'نقاط ضعف و قوت قالب (form) این مطلب. می‌توانید از Markdown مشابه شیوه‌ی نوشتن خود مطالب اینجا نیز استفاده کنید.'
+        content: 'نقاط ضعف و قوت محتوای  این مطلب. می‌توانید از Markdown مشابه شیوه‌ی نوشتن خود مطالب اینجا نیز استفاده کنید.'
