@@ -2,18 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 marked.setOptions( gfm: true, pedantic: false, sanitize: true)
+
+$(document).on 'keyup' , 'textarea#wmd-input', ->
+  $('#word-count').html($('textarea#wmd-input').val().split(/[\s,.\b-*_+]+/).length)
+
 jQuery ->
-  $('textarea#post_body').autogrow()
-  $('input#post_title').keyup ->
-    $('textarea#post_body').keyup()
-  $('textarea#post_body').keyup ->
-    $('div#post_body_preview').html "<h1>#{$('input#post_title').val()}</h1><div>#{marked $(this).val()}</div>"
-  $('textarea#post_body').keyup()
+  $('textarea').keyup()
+
   $('*[data-markdown]').html ->
     marked $(this).data('markdown')
 
-  $('form#new_review').on 'ajax:success', ->
-    $('form#new_review')[0].reset()
-    window.location.reload()
-  $('article.review a[remote=true]').on 'ajax:success', ->
-    $(this).parent().slide_up()
+  convertor = Markdown.getSanitizingConverter()
+  editor = new Markdown.Editor(convertor)
+  editor.run()

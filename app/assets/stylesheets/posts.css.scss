@@ -9,16 +9,10 @@ textarea {
   resize: vertical;
 }
 div.review {
-  border-radius: 15px;
+  border-radius: 4px;
   padding: 10px 7px;
-  margin-bottom: 10px;
+  margin: 10px 2px;
 }
-div.review_comment {
-  background-color: #E9E9E9;
-}
-div.review_positive {
-  background-color: #E9FFE9; 
-}
-div.review_negative {
-  background-color: #FFE9E9;
+div.review_comments {
+  color: #999999;
 }

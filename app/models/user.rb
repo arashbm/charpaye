@@ -6,10 +6,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,
     :remember_me, :uid, :provider, :first_name, :last_name, :image
   has_many :posts
-
-  # TODO: change to scope
+  
   def editable_posts
-    Post.scoped
+    posts
   end
 
   def visible_posts

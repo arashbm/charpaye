@@ -15,4 +15,7 @@
 //= require bootstrap
 //= require jquery.autogrow-textarea
 //= require marked
+//= require Markdown.Converter
+//= require Markdown.Sanitizer
+//= require Markdown.Editor
 //= require_tree .

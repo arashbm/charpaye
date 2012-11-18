@@ -15,9 +15,9 @@ fa:
         audits: ویرایش‌ها
         reviews: نظرات
       review:
-        positive: نقاط قوت
-        negative: نقاط ضعف
-        comment: باقی حرف‌ها
+        form: قالب
+        content: محتوا
+        comments: باقی حرف‌ها
   helpers:
     links:
       destroy: حذف
