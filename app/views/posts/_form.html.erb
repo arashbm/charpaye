@@ -1,13 +1,39 @@
 <%= simple_form_for @post, :html => { :class => 'form-vertical' } do |f| %>
   <div class="form-inputs">
     <%= f.input :title %>
+    <div class='alert-box alert info'>
+      <ul>
+        <li>بین پاراگراف‌ها یک خط خالی بگذارید.</li>
+        <li><strong>**محکم*ٰ*</strong> یا <em>_موکد_</em></li>
+        <li><code># تیتر درجه‌ی اول</code>، <code>## تیتر درجه‌ی دوم</code> و الی آخر</li>
+        <li>لیست بدون ترتیب:
+          <pre>
+- یک مورد
+- مورد دوم
+  - زیر مورد اول
+  - زیر مورد دوم
+- مورد بعدی
+          </pre>
+          قبل و بعد از لیست‌ها یک خط خالی بگذارید.
+        </li>
+        <li>لیست مرتب:
+          <pre>
+1. سلام
+2. الیک
+  - زیر لیست
+3. کچل
+          </pre>
+        </li>
+      </ul>
+    </div>
     <%= f.input :body do %>
       <div class="wmd-panel">
+        <p class='pull-right'><span  id='word-count'>?</span> کلمه</p>
         <div id='wmd-button-bar'></div>
         <%= f.text_area :body, class: 'wmd-input', id: 'wmd-input' %>
       </div>
+      <div id="wmd-preview" class="wmd-panel wmd-preview well"></div>
     <% end %>
-    <div id="wmd-preview" class="wmd-panel wmd-preview well"></div>
   </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

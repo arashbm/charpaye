@@ -3,8 +3,12 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 marked.setOptions( gfm: true, pedantic: false, sanitize: true)
 
+$(document).on 'keyup' , 'textarea#wmd-input', ->
+  $('#word-count').html($('textarea#wmd-input').val().split(/[\s,.\b-*_+]+/).length)
 
 jQuery ->
+  $('textarea').keyup()
+
   $('*[data-markdown]').html ->
     marked $(this).data('markdown')
 
