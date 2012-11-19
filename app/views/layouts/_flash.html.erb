@@ -1,0 +1,6 @@
+<% flash.each do |key, val| %>
+  <div class="alert alert-<%= flash_class(key) %>">
+    <a class="close" href="#" data-dismiss="alert">×</a>
+    <%= content_tag :p, val %>
+  </div>
+<% end %>

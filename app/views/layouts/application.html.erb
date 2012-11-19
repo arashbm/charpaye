@@ -36,9 +36,12 @@
   </head>
   <body>
 
-    <%= render (user_signed_in? ? 'layouts/user_navbar' : 'layouts/navbar') %>
+    <header>
+      <%= render (user_signed_in? ? 'layouts/user_navbar' : 'layouts/navbar') %>
+    </header>
 
     <div class="container">
+      <%= render 'layouts/flash', flash: flash %>
       <div class="content">
         <div class="row">
           <%= yield %>
