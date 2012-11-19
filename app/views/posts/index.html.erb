@@ -12,7 +12,7 @@
 <%= content_tag_for :article, @posts, class: 'span6 offset3' do |post| %>
   <h2><%= link_to post.title, post %> <small><%= post.user.name %></small></h2>
 
-  <%= content_tag :div, post.body.split("\n").first, data: { markdown: post.body.split("\n").first } %>
+  <%= content_tag :div, post.truncated_body, data: { markdown: post.truncated_body } %>
   <%= post_footer post %>
 <% end %>
 

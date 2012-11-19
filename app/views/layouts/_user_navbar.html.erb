@@ -11,11 +11,15 @@
         <ul class="nav">
           <li><%= link_to "همه‌ی مطالب", posts_path  %></li>
           <li><%= link_to "ارسال مطلب جدید", new_post_path  %></li>
+          <li><%= link_to "کاربران", users_path  %></li>
         </ul>
         <ul class='nav pull-right'>
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">سلام <%= current_user.first_name %> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="/user/preferences"><i class="icon-cog"></i> تنظیمات</a></li>
+              <li><%= link_to edit_user_path(current_user) do %>
+                <i class="icon-cog"></i> تنظیمات
+              <% end %>
+              </li>
               <li><a href="/help/support"><i class="icon-envelope"></i> پشتیبانی</a></li>
               <li class="divider"></li>
               <li>

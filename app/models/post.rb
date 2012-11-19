@@ -3,4 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
   has_many :reviews
   audited
+
+  def truncated_body
+    body.split("\n").first
+  end
 end
