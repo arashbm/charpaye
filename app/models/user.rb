@@ -11,11 +11,23 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  def importance_to(user)
+    user.id == id ? 1 : 0
+  end
+
   def admin?
     # make it configurable!
     ['arashbm@gmail.com'].include? email
   end
   
+  def can_see?(record)
+    if responds_to? ("visible_#{record.class.to_s}s")
+      send("visible_#{record.class.to_s}s").include? record
+    else
+      rails ArgumentError
+    end
+  end
+
   def visible_users
     User.scoped
   end

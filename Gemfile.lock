@@ -128,6 +128,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.1)
     responders (0.9.3)
       railties (~> 3.1)
     sass (3.2.1)
@@ -184,6 +185,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.8)
   rails-i18n
+  redis
   responders
   sass-rails (~> 3.2.3)
   simple_form

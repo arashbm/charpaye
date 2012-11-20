@@ -4,4 +4,8 @@ class Review < ActiveRecord::Base
   belongs_to :post
 
   validates :user, presence: true
+
+  def importance_to(user)
+    1 * user.importance_to(user) * post.importance_to(user)
+  end
 end

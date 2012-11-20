@@ -54,5 +54,5 @@ gem 'rails-i18n'
 gem "audited-activerecord", "~> 3.0"
 gem "diffy"
 
-# To use debugger
-# gem 'debugger'
+# redis
+gem 'redis'
