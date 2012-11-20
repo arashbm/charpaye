@@ -13,25 +13,31 @@
   <div class='page-header'>
     <h2><%= Post.human_attribute_name(:reviews) %></h2>
   </div>
-  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
-    <div class='review-author'><%= r.user.name %>:</div>
-    <%= content_tag :div, r.content, data: { markdown: r.content }, class: 'review review_content' %>
-    <%= content_tag :div, r.form, data: { markdown: r.form }, class: 'review review_form'%>
-    <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comments' %>
-  
-    <div class='review-footer'><%= l r.created_at, format: :short %> - <%= time_ago_in_words r.created_at %> پیش 
-      <% if current_user.id == r.user.id %>
-        | <%= link_to post_review_path(@post,r), method: :delete, confirm: t('helpers.links.confirm') do %>
-            <i class='icon-trash'></i> <%= t('helpers.links.destroy') %>
-          <% end %>
-      <% end %>
-    </div>
-    <hr />
-  <% end %>
+
   <%= simple_form_for [@post, @post.reviews.new] do |f| %>
     <%= f.input :content, input_html: { rows: 5, class: 'span6' } %>
     <%= f.input :form, input_html: { rows: 5, class: 'span6' } %>
     <%= f.input :comments, as: :string, input_html: {class: 'span6' } %>
     <%= f.button :submit %>
+  <% end %>
+
+  <hr />
+  
+  <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
+    <% unless r.content.empty? %>
+      <h4><%= Review.human_attribute_name :content %></h4>
+      <%= content_tag :div, r.content, data: { markdown: r.content }, class: 'review review_content'  %>
+    <% end %>
+    <% unless r.form.empty? %>
+      <h4><%= Review.human_attribute_name :form %></h4>
+      <%= content_tag :div, r.form, data: { markdown: r.form }, class: 'review review_form' unless r.form.empty? %>
+    <% end %>
+    <% unless r.comments.empty? %>
+      <h4><%= Review.human_attribute_name :comments %></h4>
+      <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comments' unless r.comments.empty? %>
+    <% end %>
+
+    <div class='review-footer'> <i class='icon-user'></i> <%= link_to r.user.name, r.user %> | <%= content_tag :abbr, "#{time_ago_in_words r.created_at} پیش ", title: l(r.created_at, format: :short) %></div>
+    <hr />
   <% end %>
 </div>

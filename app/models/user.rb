@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     ['arashbm@gmail.com'].include? email
   end
   
+  def member_of_editorial?
+    role == '1'
+  end
+
   def visible_users
     User.scoped
   end
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def editable_posts
-    if role == '1'
+    if member_of_editorial? 
       Post.scoped
     else
       posts
@@ -37,7 +41,11 @@ class User < ActiveRecord::Base
   end
 
   def visible_posts
-    Post.scoped
+    if member_of_editorial?
+      Post.scoped
+    else
+      posts
+    end
   end
 
   def self.find_or_new_for_facebook_oauth(auth, currently_signed_in_resource=nil)
