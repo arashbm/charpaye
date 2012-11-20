@@ -6,6 +6,9 @@ fa:
       review: نظر
     attributes:
       user:
+        first_name: نام
+        last_name: نام خانوادگی
+        role: تحریریه؟
         email: ایمیل
         password: رمز عبور
         remember_me: مرا به یاد بسپار

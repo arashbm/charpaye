@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1><%= @user.name %></h1>
+</div>
+
+<h2>مطالب</h2>
+<div>
+  <%= content_tag_for :article, current_user.visible_posts.where(user_id: @user.id) do |p| %>
+    <h3><%= link_to p.title, p %></h3>
+    <%= content_tag :div, p.truncated_body, data: { markdown: p.truncated_body } %>
+    <%= post_footer p %>
+  <% end %>
+</div>

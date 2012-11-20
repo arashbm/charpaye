@@ -1,0 +1,23 @@
+<div class='page-header'>
+  <h1>اعضای سایت</h1>
+</div>
+
+<table class='table'>
+<% @visible_users.each do |user| %>
+  <tr>
+    <td>
+      <%= link_to user.name, user %>
+      <% if user.role == '1' %>
+        <span class="label label-success">تحریریه</span>
+      <% end %>
+    </td>
+    <td>
+      <% if current_user.editable_users.include? user %>
+        <%= link_to  edit_user_path(user), class: 'btn btn-small' do %>
+          <i class='icon-edit'></i> ویرایش
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>

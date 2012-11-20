@@ -2,7 +2,6 @@
   <h1>ورود</h1>
 </div>
 
-<%= link_to user_omniauth_authorize_path(:facebook) do %>
-  <img src="http://placehold.it/40x40" alt="facebook login" class='img-rounded' />
-  ورود با فیسبوک
+<%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-large' do %>
+  <i class="icon-lock"></i> ورود با Facebook
 <% end %>

@@ -1,4 +1,4 @@
-# Charpaye 1.0
+# Charpaye 1.1
 The web app for the workflow of Charpaye editorial
 
 ## Features:

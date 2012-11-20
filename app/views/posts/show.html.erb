@@ -1,7 +1,7 @@
 <div class='row span6 offset3'>
   <div class="page-header">
     <h1>
-      <%= @post.title %><small> <%= @post.user.name %></small>
+      <%= @post.title %> <small><%= @post.user.name %></small>
     </h1>
   </div>
 
@@ -14,7 +14,7 @@
     <h2><%= Post.human_attribute_name(:reviews) %></h2>
   </div>
   <%= content_tag_for :article, @post.reviews.order('created_at DESC') do |r| %>
-    <div class='review-author'><%= image_tag r.user.image %> <%= r.user.name %>:</div>
+    <div class='review-author'><%= r.user.name %>:</div>
     <%= content_tag :div, r.content, data: { markdown: r.content }, class: 'review review_content' %>
     <%= content_tag :div, r.form, data: { markdown: r.form }, class: 'review review_form'%>
     <%= content_tag :div, r.comments, data: { markdown: r.comments }, class: 'review review_comments' %>
