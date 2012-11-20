@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     :remember_me, :uid, :provider, :first_name, :last_name, :image, as: :admin
   attr_accessible :email, :password, :password_confirmation,
     :remember_me, :uid, :provider, :first_name, :last_name, :image
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   def admin?
     # make it configurable!
