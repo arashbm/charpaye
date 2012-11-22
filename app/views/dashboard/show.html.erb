@@ -1,0 +1,8 @@
+<div id='dashboard' ng-app>
+  در حال بارگذاری فهرست فعالیت‌ها...
+  <ul>
+    <%= content_tag_for :li, @activities do |activity| %>
+      <%= activity.subject.name %>
+      <%= activity.thing.class %>
+    <% end %>
+</div> 
