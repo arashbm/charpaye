@@ -1,8 +1,20 @@
-<div id='dashboard' ng-app>
-  در حال بارگذاری فهرست فعالیت‌ها...
-  <ul>
-    <%= content_tag_for :li, @activities do |activity| %>
-      <%= activity.subject.name %>
-      <%= activity.thing.class %>
+<div class='span8'>
+  <h2>آخرین فعالیت‌ها در سایت</h2>
+  <ul> 
+    <%= content_tag_for :li, Activity.order('created_at DESC').limit(20) do |activity| %>
+      <%= render "shared/activity-#{activity.thing_type.downcase}-#{activity.action}", activity: activity %> (<%= time_ago_in_words activity.created_at %> پیش)
     <% end %>
+  </ul>
+</div>
+
+<div class="span4">
+  <div class='well sidbar-nav'>
+    <ul class='nav nav-list'> 
+      <li class='nav-header'>آخرین مطالب شما</li>
+      <%= content_tag_for :li, current_user.posts.order('updated_at DESC').limit(5) do |p| %>
+        <%= link_to p.title, p %>
+      <% end %>
+    </ul>
+  </div>
 </div> 
+

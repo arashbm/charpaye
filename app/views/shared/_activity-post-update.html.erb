@@ -1,0 +1,1 @@
+<%= subject_name(activity.subject) %> مطلب «<%= link_to truncated_title(activity.thing), activity.thing %>» را به روز <%= verb(activity.subject) %>. تغییرات را <%= link_to 'ببینید', post_revision_path(activity.thing ,activity.thing.audits.find(activity.data[:audit_id]).version) %>.

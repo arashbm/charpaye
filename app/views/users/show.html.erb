@@ -6,7 +6,7 @@
 <div>
   <%= content_tag_for :article, current_user.visible_posts.where(user_id: @user.id) do |p| %>
     <h3><%= link_to p.title, p %></h3>
-    <%= content_tag :div, p.truncated_body, data: { markdown: p.truncated_body } %>
+    <%= content_tag :div, truncated_body(p), data: { markdown: truncated_body(p) } %>
     <%= post_footer p %>
   <% end %>
 </div>
