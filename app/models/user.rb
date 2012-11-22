@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   # should it nullify?
   has_many :posts, dependent: :destroy
 
+  # activities this user been an object to
+  has_many :related_activities, class_name: 'Activity', as: :thing
+
+  # activities and actions this user has done (been a subject to).
+  has_many :activities, foreign_key: "subject_id"
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
