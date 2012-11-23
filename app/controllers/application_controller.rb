@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :json
 
   def user_root_path
-    posts_path
+    dashboard_path
   end
 
   protect_from_forgery
