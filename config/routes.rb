@@ -4,6 +4,9 @@ Charpaye::Application.routes.draw do
     resources :reviews, except: [ :new, :edit ]
   end
 
+  resource :activities
+  get '/dashboard' => 'dashboard#show'
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :users, only: [ :index, :show, :edit, :update ]
