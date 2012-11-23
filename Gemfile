@@ -54,5 +54,8 @@ gem 'rails-i18n'
 gem "audited-activerecord", "~> 3.0"
 gem "diffy"
 
+# exception notification with errbit
+gem 'airbrake'
+
 # To use debugger
 # gem 'debugger'

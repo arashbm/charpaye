@@ -1,0 +1,26 @@
+<div class='span8'>
+  <h2>آخرین فعالیت‌ها در سایت</h2>
+  <% if current_user.member_of_editorial? %>
+    <ul class="unstyled"> 
+      <%= content_tag_for :li, @activities do |activity| %>
+        <%= render "shared/activity-#{activity.thing_type.downcase}-#{activity.action}", activity: activity %> (<%= time_ago_in_words activity.created_at %> پیش)
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="alert alert-warning">
+      <p>برای اینکه دسترسی‌های مربوط به اعضای تحریریه، مانند مشاهده‌ی همه‌ی مطالب، به شما داده شود، ابتدا باید حساب شما تایید شود. جهت تایید حساب با آرش بدیع مدیری صحبت کنید.</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="span4">
+  <div class='well sidbar-nav'>
+    <ul class='nav nav-list'> 
+      <li class='nav-header'>آخرین مطالب شما</li>
+      <%= content_tag_for :li, @posts do |p| %>
+        <%= link_to p.title, p %>
+      <% end %>
+    </ul>
+  </div>
+</div> 
+

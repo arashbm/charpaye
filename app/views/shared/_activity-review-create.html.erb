@@ -1,0 +1,1 @@
+<%= subject_name(activity.subject) %> <%= link_to 'نقدی', post_review_path(activity.thing.post, activity.thing) %> جدید روی مطلب «<%= link_to truncated_title(activity.thing.post), activity.thing.post %>» <%= verb(activity.subject, 'نوشت') %>.

@@ -6,13 +6,18 @@
     new_post_path,
     :class => 'btn btn-primary' %></p>
 </div>
+<% unless current_user.member_of_editorial? %>
+  <div class="alert alert-warning">
+    <p>برای اینکه دسترسی‌های مربوط به اعضای تحریریه، مانند مشاهده‌ی همه‌ی مطالب، به شما داده شود، ابتدا باید حساب شما تایید شود. جهت تایید حساب با آرش بدیع مدیری صحبت کنید.</p>
+  </div>
+<% end %>
 <div class="page-header">
   <h1>همه‌ی مطالب</h1>
 </div>
 <%= content_tag_for :article, @posts, class: 'span6 offset3' do |post| %>
   <h2><%= link_to post.title, post %> <small><%= post.user.name %></small></h2>
 
-  <%= content_tag :div, post.truncated_body, data: { markdown: post.truncated_body } %>
+  <%= content_tag :div, truncated_body(post), data: { markdown: truncated_body(post) } %>
   <%= post_footer post %>
 <% end %>
 
