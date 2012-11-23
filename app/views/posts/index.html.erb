@@ -6,6 +6,11 @@
     new_post_path,
     :class => 'btn btn-primary' %></p>
 </div>
+<% unless current_user.member_of_editorial? %>
+  <div class="alert alert-warning">
+    <p>برای اینکه دسترسی‌های مربوط به اعضای تحریریه، مانند مشاهده‌ی همه‌ی مطالب، به شما داده شود، ابتدا باید حساب شما تایید شود. جهت تایید حساب با آرش بدیع مدیری صحبت کنید.</p>
+  </div>
+<% end %>
 <div class="page-header">
   <h1>همه‌ی مطالب</h1>
 </div>
