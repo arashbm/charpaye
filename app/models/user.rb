@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :omniauthable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :role,
-    :remember_me, :uid, :provider, :first_name, :last_name, :image, as: :admin
-  attr_accessible :email, :password, :password_confirmation,
+    :notification_email, :remember_me, :uid, :provider, :first_name,
+    :last_name, :image, as: :admin
+  attr_accessible :email, :password, :password_confirmation, :notification_email,
     :remember_me, :uid, :provider, :first_name, :last_name, :image
 
   # should it nullify?
@@ -16,6 +17,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :notification_email, presence: true
 
   def admin?
     # make it configurable!
@@ -62,6 +64,7 @@ class User < ActiveRecord::Base
                       provider:auth.provider,
                       uid:auth.uid,
                       email:auth.info.email,
+                      notification_email:auth.info.email,
                       password:Devise.friendly_token[0,20],
                       image: auth.info.image.sub('http:', 'https:'))
     end
