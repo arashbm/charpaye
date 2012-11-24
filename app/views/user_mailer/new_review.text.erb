@@ -1,0 +1,19 @@
+<%= @review.user.name %> نقد جدیدی روی مطلب «<%= truncated_title(@review.post) %>» نوشت
+============================================================================
+
+نظر را در سایت ببینید: <%= post_review_url(@review.post, @review) %>
+
+<% unless @review.content.empty? %>
+محتوا:
+<%= @review.content %>
+<% end %>
+
+<% unless @review.form.empty? %>
+قالب:
+<%= @review.form %>
+<% end %>
+
+<% unless @review.comments.empty? %>
+باقی نظرات:
+<%= @review.comments %>
+<% end %>

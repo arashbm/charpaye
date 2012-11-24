@@ -1,0 +1,25 @@
+<html lang='fa' dir='rtl'>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <h1><%= @review.user.name %> نقد جدیدی روی مطلب «<%= link_to truncated_title(@review.post), post_url(@review.post) %>» نوشت:</h1>
+    <%= link_to 'نظر را در سایت ببینید', post_review_url(@review.post, @review) %>
+    <blockquote>
+      <% unless @review.content.empty? %>
+        <h3>محتوا:</h3>
+        <%= simple_format @review.content %>
+      <% end %>
+
+      <% unless @review.form.empty? %>
+        <h3>قالب:</h3>
+        <%= simple_format @review.form %>
+      <% end %>
+
+      <% unless @review.comments.empty? %>
+        <h3>باقی نظرات:</h3>
+        <%= simple_format @review.comments %>
+      <% end %>
+    </blockquote>
+  </body>
+</html>
