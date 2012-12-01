@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_posts
   def index
-    @posts = @visible_posts.all
+    @posts = @visible_posts.order('updated_at DESC')
     respond_with(@posts)
   end
 
