@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    respond_with @visible_users
+    respond_with @visible_users.order('role DESC')
   end
 
   # GET /users/1
