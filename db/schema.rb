@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124113843) do
+ActiveRecord::Schema.define(:version => 20121125195555) do
 
   create_table "activities", :force => true do |t|
     t.integer  "subject_id"
@@ -76,12 +76,15 @@ ActiveRecord::Schema.define(:version => 20121124113843) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "provider"
-    t.string   "uid"
+    t.string   "facebook_uid"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "image"
     t.string   "role"
-    t.string   "notification_email"
+    t.string   "facebook_email"
+    t.string   "facebook_image"
+    t.string   "facebook_expires_at"
+    t.string   "facebook_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
   def new_review(review_id)
     @review = Review.find(review_id)
     @reciever = @review.post.user
-    mail to: @reciever.notification_email,
+    mail to: @reciever.email,
       subject: "[چارپایه] #{@review.user.name} نقدی برای مطلب «#{@review.post.title}» نوشت."
   end
 end
