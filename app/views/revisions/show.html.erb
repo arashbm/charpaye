@@ -3,11 +3,27 @@
 </div>
 <% case @audit.action %>
 <% when 'update' %>
-  <div class='alert alert-box alert-info'><p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.email %> ویرایش شد.</p><%= next_previous_buttons %></div>
-<h2><%= content_tag :strike, @audit.audited_changes["title"][0] if @audit.audited_changes.keys.include? "title" && @audit.action %> <%= @audit.revision.title %></h2>
-<%= content_tag :div, body_diff(@audit.audited_changes["body"][0], @audit.audited_changes["body"][1]), class: 'well' if @audit.audited_changes.keys.include? "body" %>
+
+  <div class='alert alert-box alert-info'>
+    <p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.name %> ویرایش شد.</p>
+    <%= next_previous_buttons %>
+  </div>
+
+  <h2><%= @audit.revision.title %></h2>
+
+  <% if @audit.audited_changes.keys.include 'title' %>
+    <p>عنوان را از <strong>«<%= @audit.audited_changes["title"][0] %>»</strong> به <strong>«<%= @audit.audited_changes["title"][1] %>»</strong> تغییرا داد.</p>
+  <% end %>
+
+  <% if @audit.audited_changes.keys.include 'body' %>
+    <p>اغییراتی در متن ایجاد کرد:</p> 
+    <%= content_tag :div, body_diff(@audit.audited_changes["body"][0], @audit.audited_changes["body"][1]), class: 'well' %>
+  <% end%>
 <% when 'create' %>
-  <div class='alert alert-box alert-info'><p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.email %> ایجاد شد.</p><%= next_previous_buttons %></div>
+  <div class='alert alert-box alert-info'>
+    <p>مطلب در تاریخ <%= l @audit.created_at %> (<%= time_ago_in_words @audit.created_at %> پیش) توسط <%= @audit.user.email %> ایجاد شد.</p>
+    <%= next_previous_buttons %>
+  </div>
   <h2><%= @audit.revision.title %></h2>
   <%= content_tag :div, @audit.revision.body, class: 'well', data: {markdown: @audit.revision.body} %>
 <% end %>
